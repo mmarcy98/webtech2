@@ -1,0 +1,53 @@
+<h1 class="mat-h1">Product Update Form</h1>
+<form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="standard">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="name" required>
+        <mat-error *ngIf="f.name.touched && f.name.invalid">
+            <span *ngIf="f.name.errors?.required">This field is mandatory.</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard">
+        <mat-label>Description</mat-label>
+        <textarea matInput maxlength="250" formControlName="description"></textarea>
+        <mat-error *ngIf="f.description.touched && f.description.invalid">
+            <span *ngIf="f.description.errors?.maxlength">This field can be at most 250 characters long.</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard">
+        <mat-label>Quantity</mat-label>
+        <input autocomplete="off" matInput type="number" formControlName="quantity" required min="0">
+        <mat-error *ngIf="f.quantity.touched && f.quantity.invalid">
+            <span *ngIf="f.quantity.errors?.required">This field is mandatory.</span>
+            <span *ngIf="f.quantity.errors?.min">This number needs to be at least 0 or higher.</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard">
+        <mat-label>Price</mat-label>
+        <input matInput type="number" formControlName="price" required min="0">
+        <mat-error *ngIf="f.price.touched && f.price.invalid">
+            <span *ngIf="f.price.errors?.required">This field is mandatory.</span>
+            <span *ngIf="f.price.errors?.min">This number needs to be at least 0 or higher.</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="isActive">
+            <mat-option *ngFor="let status of activeStatus" [value]="status.value">
+                {{status.viewValue}}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="f.isActive.touched && f.isActive.invalid">
+            <span *ngIf="f.isActive.errors?.required">This field is mandatory.</span>
+        </mat-error>
+    </mat-form-field>
+
+    <div class="footer">
+        <button mat-stroked-button color="primary" type="button" (click)="back()">Back</button>
+        <button mat-raised-button color="primary" type="submit">Update</button>
+    </div>
+</form>
