@@ -1,4 +1,4 @@
-# Web technológiák 2 beadandó
+# Web technológiák 2  (GEIAL334-B) beadandó
 
 ## Használati útmutató
 
